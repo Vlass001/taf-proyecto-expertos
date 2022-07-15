@@ -81,7 +81,7 @@ public class interfazFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarActionPerformed
-        String conexion = "consult('diagnostico.pl')";
+        String conexion = "consult('baseConocimiento.pl')";
         Query objConsulta = new Query (conexion);
         
         if (objConsulta.hasSolution()){
