@@ -89,7 +89,7 @@ public class interfazFrame extends javax.swing.JFrame {
             String predicado = "start.";
             Query a = new Query(predicado);
             String diagnostico = a.oneSolution().get("Postulante")+", usted probablementen tenga "+ a.oneSolution().get("Profesion");
-            System.out.println("hola chiquita");
+           
         }
     }//GEN-LAST:event_btn_enviarActionPerformed
 
