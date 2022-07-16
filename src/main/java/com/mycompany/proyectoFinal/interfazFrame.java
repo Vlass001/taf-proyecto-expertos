@@ -120,7 +120,8 @@ public class interfazFrame extends javax.swing.JFrame {
             Query name = new Query(nombre);
             System.out.println(name.hasSolution() ? "ACEPTADO" : "FALLADO");
             
-            //String diagnostico = a.oneSolution().get("Postulante")+", usted probablementen tenga "+ a.oneSolution().get("Profesion");
+            String diagnostico = a.oneSolution().get("Profesion").toString();
+            System.out.println(diagnostico);
            
         }
     }//GEN-LAST:event_btn_enviarActionPerformed

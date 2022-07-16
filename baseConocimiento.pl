@@ -2,21 +2,14 @@
 :- use_module(library(jpl)).
 
 start:-
-	write('-----------------------------------------------------------------'),nl,
-	write('*****************************************************************'),nl,
-	write("###################||| EXPERT SYSTEM |||#########################"),nl,
-	write('*****************************************************************'),nl,
-	write('-----------------------------------------------------------------'),nl,nl,nl,
-	/*write("Hola. �Como estas? Primero que nada dime tu nombre por favor : "),
-	read(Postulante),*/
+	nl.
 
-		%Areas de postulacion
 	requisitos(Postulante, areaMatematicas) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
 	requisitos(Postulante, areaInformatica) :- verificar(Postulante, "postula a area de informatica (si/no)?").
 	requisitos(Postulante, areaEstadistica) :- verificar(Postulante, "postula a area de estadistica (si/no)?").
 	requisitos(Postulante, areaFisica) :- verificar(Postulante, "postula a area de fisica (si/no)?").
 
-	%Escuelas de postulacion
+	
 	requisitos(Postulante, sistemas) :- verificar(Postulante, "postula a ing. sistemas (si/no)?").
 	requisitos(Postulante, minas) :- verificar(Postulante, "postula a ing. minas (si/no)?").
 	requisitos(Postulante, civil) :- verificar(Postulante, "postula a ing. civil (si/no)?").
