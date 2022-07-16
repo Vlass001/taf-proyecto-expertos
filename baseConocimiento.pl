@@ -11,8 +11,7 @@ start:-
 	read(Postulante),*/
 
 		%Areas de postulacion
-	%requisitos(Postulante, areaMatematicas) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
-	requisitos(Postulante, areaInformaticaa) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
+	requisitos(Postulante, areaMatematicas) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
 	requisitos(Postulante, areaInformatica) :- verificar(Postulante, "postula a area de informatica (si/no)?").
 	requisitos(Postulante, areaEstadistica) :- verificar(Postulante, "postula a area de estadistica (si/no)?").
 	requisitos(Postulante, areaFisica) :- verificar(Postulante, "postula a area de fisica (si/no)?").
@@ -39,6 +38,27 @@ start:-
 	requisitos(Postulante, paf2) :- verificar(Postulante, "tiene grado de maestro para la formacion en el nivel de pregrado (si/no)?").
 	requisitos(Postulante, paf3) :- verificar(Postulante, "tiene 5 annos o mas ejerciendo esa profesion (si/no)?").
 
+	hipotesis(Postulante, area_Matematicas) :- 
+		requisitos(Postulante, areaMatematicas),
+		((requisitos(Postulante, sistemas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, minas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+		
+		(requisitos(Postulante, civil),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, fisma),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo))); fail.
 
 	hipotesis(Postulante, area_Informatica) :- 
 		requisitos(Postulante, areaInformatica),
@@ -62,50 +82,6 @@ start:-
 		requisitos(Postulante, pai2),
 		requisitos(Postulante, pai3), undo))); fail.
 
-
-	hipotesis(Postulante, area_Mate) :- 
-		requisitos(Postulante, areaInformaticaa),
-		((requisitos(Postulante, sistemas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, minas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-		
-		(requisitos(Postulante, civil),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, fisma),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo))); fail.
-		
-		hipotesis(Postulante, area_Mate) :- 
-		requisitos(Postulante, areaInformaticaa),
-		((requisitos(Postulante, sistemas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, minas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-		
-		(requisitos(Postulante, civil),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, fisma),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo))); fail.
 		
 	hipotesis(Postulante, area_Estadistica) :- 
 		requisitos(Postulante, areaEstadistica),
