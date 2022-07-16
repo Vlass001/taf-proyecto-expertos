@@ -2,18 +2,17 @@
 :- use_module(library(jpl)).
 
 start:-
-		write('-----------------------------------------------------------------'),nl,
-		write('*****************************************************************'),nl,
-		write("###################||| EXPERT SYSTEM |||#########################"),nl,
-		write('*****************************************************************'),nl,
-		write('-----------------------------------------------------------------'),nl,nl,nl,
-        /*write("Hola. �Como estas? Primero que nada dime tu nombre por favor : "),
-        read(Postulante),*/
-
-		interface2.
+	write('-----------------------------------------------------------------'),nl,
+	write('*****************************************************************'),nl,
+	write("###################||| EXPERT SYSTEM |||#########################"),nl,
+	write('*****************************************************************'),nl,
+	write('-----------------------------------------------------------------'),nl,nl,nl,
+	/*write("Hola. �Como estas? Primero que nada dime tu nombre por favor : "),
+	read(Postulante),*/
 
 		%Areas de postulacion
-	requisitos(Postulante, areaMatematicas) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
+	%requisitos(Postulante, areaMatematicas) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
+	requisitos(Postulante, areaInformaticaa) :- verificar(Postulante, "postula a area de matematicas (si/no)?").
 	requisitos(Postulante, areaInformatica) :- verificar(Postulante, "postula a area de informatica (si/no)?").
 	requisitos(Postulante, areaEstadistica) :- verificar(Postulante, "postula a area de estadistica (si/no)?").
 	requisitos(Postulante, areaFisica) :- verificar(Postulante, "postula a area de fisica (si/no)?").
@@ -40,28 +39,6 @@ start:-
 	requisitos(Postulante, paf2) :- verificar(Postulante, "tiene grado de maestro para la formacion en el nivel de pregrado (si/no)?").
 	requisitos(Postulante, paf3) :- verificar(Postulante, "tiene 5 annos o mas ejerciendo esa profesion (si/no)?").
 
-    
-	hipotesis(Postulante, area_Matematicas) :- 
-		requisitos(Postulante, areaMatematicas),
-		((requisitos(Postulante, sistemas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, minas),
-		(requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-		
-		(requisitos(Postulante, civil),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo));
-
-		(requisitos(Postulante, fisma),
-        (requisitos(Postulante, pam1),
-		requisitos(Postulante, pam2),
-		requisitos(Postulante, pam3), undo))); fail.
 
 	hipotesis(Postulante, area_Informatica) :- 
 		requisitos(Postulante, areaInformatica),
@@ -84,6 +61,51 @@ start:-
         (requisitos(Postulante, pai1),
 		requisitos(Postulante, pai2),
 		requisitos(Postulante, pai3), undo))); fail.
+
+
+	hipotesis(Postulante, area_Mate) :- 
+		requisitos(Postulante, areaInformaticaa),
+		((requisitos(Postulante, sistemas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, minas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+		
+		(requisitos(Postulante, civil),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, fisma),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo))); fail.
+		
+		hipotesis(Postulante, area_Mate) :- 
+		requisitos(Postulante, areaInformaticaa),
+		((requisitos(Postulante, sistemas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, minas),
+		(requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+		
+		(requisitos(Postulante, civil),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo));
+
+		(requisitos(Postulante, fisma),
+        (requisitos(Postulante, pam1),
+		requisitos(Postulante, pam2),
+		requisitos(Postulante, pam3), undo))); fail.
 		
 	hipotesis(Postulante, area_Estadistica) :- 
 		requisitos(Postulante, areaEstadistica),
@@ -151,20 +173,15 @@ undo :- retract(no(_)),fail.
 undo.
 
 
-pt(Postulante):-
+pt(Postulante) :-
         hipotesis(Postulante, Profesion),
-		interface3(Postulante,', puede contratarse para ', Profesion,'.'),
-        write(Postulante),write(', tu probablemente tengas '),write(Profesion),write('.'),undo,end.
-end :-
-		nl,
-		write('*****************************************************************'),
-		nl.
+		interface3(Postulante,', puede contratarse para ', Profesion,'.'),undo.
 
 interface(X,Y,Z) :-
 	atom_concat(Y,X, FAtom),
 	atom_concat(FAtom,Z,FinalAtom),
 	jpl_new('javax.swing.JFrame', ['Contratacion de docentes'], F),
-	jpl_new('javax.swing.JLabel',['---Sistema test de Contratacion de docentes ---'],LBL),
+	jpl_new('javax.swing.JLabel',['---Sistema de Contratacion de docentes ---'],LBL),
 	jpl_new('javax.swing.JPanel',[],Pan),
 	jpl_call(Pan,add,[LBL],_),
 	jpl_call(F,add,[Pan],_),
@@ -179,31 +196,12 @@ interface(X,Y,Z) :-
        assert(si(Z)) ;
        assert(no(Z)), fail).
 
-interface2 :-
-	jpl_new('javax.swing.JFrame', ['Contratacion de docentes'], F),
-	jpl_new('javax.swing.JLabel',['--- Sistema test de Contratacion de docentes ---'],LBL),
-	jpl_new('javax.swing.JPanel',[],Pan),
-	jpl_call(Pan,add,[LBL],_),
-	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
-	jpl_call(F, setVisible, [@(true)], _),
-	jpl_call(F, toFront, [], _),
-	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,'Por favor, ingrese el nombre de postulante'], N),
-	jpl_call(F, dispose, [], _),
-	/*write(N),nl,*/
-	(	N == @(null)
-		->	write('cancelaste'),interface3('cancelaste. ','gracias ','por ','postular.'),end,fail
-		;	write("Hola. Como estas? Primero que nada dime tu nombre por favor : "),write(N),nl,pt(N)
-	).
-
-
 interface3(P, W1, D, W2) :-
 	atom_concat(P,W1, A),
 	atom_concat(A,D,B),
 	atom_concat(B,W2,W3),
 	jpl_new('javax.swing.JFrame', ['Contratacion de docentes'], F),
-	jpl_new('javax.swing.JLabel',['--- Sistema test de Contratacion de docentes ---'],LBL),
+	jpl_new('javax.swing.JLabel',['--- Sistema de Contratacion de docentes ---'],LBL),
 	jpl_new('javax.swing.JPanel',[],Pan),
 	jpl_call(Pan,add,[LBL],_),
 	jpl_call(F,add,[Pan],_),
