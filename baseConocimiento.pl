@@ -150,7 +150,7 @@ interface(X,Y,Z) :-
 	atom_concat(Y,X, FAtom),
 	atom_concat(FAtom,Z,FinalAtom),
 	jpl_new('javax.swing.JFrame', ['ss'], F),
-	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,FinalAtom], N,'INFORMATION_MESSAGE'),
+	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,FinalAtom], N),
 	jpl_call(F, dispose, [], _),
 	write(N),nl,
 	( (N == si ; N == s) ->
