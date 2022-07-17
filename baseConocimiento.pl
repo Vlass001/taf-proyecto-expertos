@@ -149,41 +149,12 @@ pt(Postulante) :-
 interface(X,Y,Z) :-
 	atom_concat(Y,X, FAtom),
 	atom_concat(FAtom,Z,FinalAtom),
-	jpl_new('javax.swing.JFrame', ['Contratacion de docentes'], F),
-	jpl_new('javax.swing.JLabel',['---Sistema de Contratacion de docentes ---'],LBL),
-	jpl_new('javax.swing.JPanel',[],Pan),
-	jpl_call(Pan,add,[LBL],_),
-	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
-	jpl_call(F, setVisible, [@(true)], _),
-	jpl_call(F, toFront, [], _),
-	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,FinalAtom], N),
+	jpl_new('javax.swing.JFrame', ['ss'], F),
+	jpl_call('javax.swing.JOptionPane', showInputDialog, [F,FinalAtom], N,'INFORMATION_MESSAGE'),
 	jpl_call(F, dispose, [], _),
 	write(N),nl,
 	( (N == si ; N == s) ->
        assert(si(Z)) ;
        assert(no(Z)), fail).
-
-interface3(P, W1, D, W2) :-
-	atom_concat(P,W1, A),
-	atom_concat(A,D,B),
-	atom_concat(B,W2,W3),
-	jpl_new('javax.swing.JFrame', ['Contratacion de docentes'], F),
-	jpl_new('javax.swing.JLabel',['--- Sistema de Contratacion de docentes ---'],LBL),
-	jpl_new('javax.swing.JPanel',[],Pan),
-	jpl_call(Pan,add,[LBL],_),
-	jpl_call(F,add,[Pan],_),
-	jpl_call(F, setLocation, [400,300], _),
-	jpl_call(F, setSize, [400,300], _),
-	jpl_call(F, setVisible, [@(true)], _),
-	jpl_call(F, toFront, [], _),
-	jpl_call('javax.swing.JOptionPane', showMessageDialog, [F,W3], N),
-	jpl_call(F, dispose, [], _),
-	
-	(	N == @(void)
-		->	write('')
-		;	write("")
-	).
 
 help :- write("To start the expert system please type 'start.' and press Enter key").
